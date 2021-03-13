@@ -18,6 +18,7 @@ class _HomeState extends State<Home> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String _textContent = "Informe seus dados";
+  String varPeso = "";
 
   void _resetFields() {
     weightController.text = "";
@@ -36,17 +37,28 @@ class _HomeState extends State<Home> {
 
       if (imc < 18.6) {
         _textContent = "Abaixo do peso (${imc.toStringAsPrecision(3)})";
+        varPeso =
+            "Você deve ganhar ${(18.6 * height * height - weight).toStringAsPrecision(3)}Kg para atingir o peso ideal";
       } else if (imc >= 18.6 && imc < 24.9) {
         _textContent = "Peso Ideal (${imc.toStringAsPrecision(3)})";
+        varPeso = "";
       } else if (imc >= 24.9 && imc < 29.9) {
         _textContent =
             "Levemente Acima do peso (${imc.toStringAsPrecision(3)})";
+        varPeso =
+            "Você deve perder ${(weight - 24.9 * height * height).toStringAsPrecision(3)}Kg para atingir o peso ideal";
       } else if (imc >= 29.9 && imc < 34.9) {
         _textContent = "Obesidade Grau I (${imc.toStringAsPrecision(3)})";
+        varPeso =
+            "Você deve perder ${(weight - 24.9 * height * height).toStringAsPrecision(3)}Kg para atingir o peso ideal";
       } else if (imc >= 34.9 && imc < 39.9) {
         _textContent = "Obesidade Grau II (${imc.toStringAsPrecision(3)})";
+        varPeso =
+            "Você deve perder ${(weight - 24.9 * height * height).toStringAsPrecision(3)}Kg para atingir o peso ideal";
       } else if (imc >= 40) {
         _textContent = "Obesidade Grau III (${imc.toStringAsPrecision(3)})";
+        varPeso =
+            "Você deve perder ${(weight - 24.9 * height * height).toStringAsPrecision(3)}Kg para atingir o peso ideal";
       }
     });
   }
@@ -123,6 +135,14 @@ class _HomeState extends State<Home> {
               ),
               Text(
                 _textContent,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.blueGrey,
+                  fontSize: 25.0,
+                ),
+              ),
+              Text(
+                varPeso,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.blueGrey,
