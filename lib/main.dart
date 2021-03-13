@@ -25,6 +25,7 @@ class _HomeState extends State<Home> {
     heightController.text = "";
     setState(() {
       _textContent = "Informe seus dados";
+      varPeso = "";
     });
   }
 
